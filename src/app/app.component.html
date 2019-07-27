@@ -1,0 +1,9 @@
+<!-- <app-todos></app-todos> -->
+
+<h1>List of courses</h1>
+
+<input type="text" [(ngModel)]="title" (keyup.control.arrowup)="addCourse()">
+
+<ul>
+    <li *ngFor="let course of courses">{{ course }}</li>
+</ul>
