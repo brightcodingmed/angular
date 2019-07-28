@@ -22,6 +22,25 @@
     </div>
 </div>
 
+<div class="row my-2">
+    <div class="col-6 mx-auto">
+        <div class="form-group">
+            <label for="Content">Content</label>
+            <textarea [(ngModel)]="myTodo.content" name="" id="Content" rows="2" class="form-control"></textarea>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input [(ngModel)]="myTodo.active" type="checkbox" class="form-check-input" id="">
+            Checked
+          </label>
+        </div>
+
+        <button (click)="addTodo()" class="btn btn-block btn-primary">
+            <i class="fa fa-send"></i> Add Todo
+        </button>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-12">
         <table class="table table-striped">
@@ -35,19 +54,21 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let todo of todos">
+                <tr *ngFor="let todo of todos; index as i">
                     <td>{{ todo.id }}</td>
                     <td>{{ todo.content }}</td>
                     <td>{{ todo.date | date: 'dd/MM/yyyy' }}</td>
                     <td>
-                        <i class="fa sizeIcon" [ngClass]="{
-                            'fa-check-circle text-success': todo.done,
-                            'fa-times-circle text-danger': !todo.done
+                        <i (click)="toggleActive(todo)" class="fa sizeIcon" [ngClass]="{
+                            'fa-check-circle text-success': todo.active,
+                            'fa-times-circle text-danger': !todo.active
                         }"></i>
                     </td>
                     <td class="text-right" nowrap>
+                        
+                        <a [routerLink]="['/todos', todo.id]" class="btn btn-info mr-1 btn-sm"><i class="fa fa-eye"></i></a>
                         <button class="btn mr-1 btn-sm btn-warning"><i class="fa fa-pencil"></i></button>
-                        <button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
+                        <button (click)="delete(todo.id)" class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
                     </td>
                 </tr>
             </tbody>
