@@ -3,6 +3,9 @@
 
 <img [src]="image" alt="">
 
+
+((.row>.col-12>h1{List of courses})+(.row>.col-12>table.table-striped>(thead>tr>th*5)+tbody>tr>td*5))
+
 <ul>
     <li *ngFor="let todo of todos">
         <p>{{ todo.content }}</p>
@@ -13,4 +16,41 @@
         <input type="checkbox" [ngModel]="todo.done">
     </li>
 </ul> -->
-*
+<div class="row">
+    <div class="col-12">
+        <h1>List of courses</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Content</th>
+                    <th>Date</th>
+                    <th>Done</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let todo of todos">
+                    <td>{{ todo.id }}</td>
+                    <td>{{ todo.content }}</td>
+                    <td>{{ todo.date | date: 'dd/MM/yyyy' }}</td>
+                    <td>
+                        <i class="fa sizeIcon" [ngClass]="{
+                            'fa-check-circle text-success': todo.done,
+                            'fa-times-circle text-danger': !todo.done
+                        }"></i>
+                    </td>
+                    <td class="text-right" nowrap>
+                        <button class="btn mr-1 btn-sm btn-warning"><i class="fa fa-pencil"></i></button>
+                        <button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

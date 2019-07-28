@@ -7,11 +7,15 @@ import { TodosComponent } from './components/todos/todos.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { TodoShowComponent } from './components/todo-show/todo-show.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodosComponent
+    TodosComponent,
+    NavbarComponent,
+    TodoShowComponent
   ],
   imports: [
     BrowserModule,

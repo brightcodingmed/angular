@@ -11,4 +11,8 @@ export class TodoService {
   getWelcome() {
      return this.http.get("http://localhost:9090/todos");
   }
+
+  getOne(id: number) {
+    return this.http.get(`http://localhost:9090/todos/${id}`);
+  }
 }
