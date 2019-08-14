@@ -5,19 +5,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodosComponent } from './components/todos/todos.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { TodoShowComponent } from './components/todo-show/todo-show.component';
 
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { TodoAddComponent } from './components/todo-add/todo-add.component';
+import { TodoEditComponent } from './components/todo-edit/todo-edit.component';
+import { LoginComponent } from './components/login/login.component';
+import { InterceptorAuthService } from './services/interceptor-auth.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodosComponent,
     NavbarComponent,
-    TodoShowComponent
+    TodoShowComponent,
+    TodoAddComponent,
+    TodoEditComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +33,11 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     FormsModule,
     FlashMessagesModule.forRoot()
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: InterceptorAuthService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
